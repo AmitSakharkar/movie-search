@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
-
+import Loader from 'components/Loader/Loader';
+import styles from './MovieDetails.module.css';
 interface MovieDetailsData {
     Title: string;
     Year: string;
@@ -28,17 +29,17 @@ const MovieDetailsModal: React.FC<MovieDetailsModalProps> = ({
     return (
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} ariaHideApp={false}>
             {isLoading ? (
-                <div className="loader">Loading...</div>
+                <Loader />
             ) : movieDetails ? (
-                <div className="modal-content">
-                    <button onClick={onRequestClose} className="close-button">
+                <div className={styles.modalContent}>
+                    <button onClick={onRequestClose} className={styles.closeButton}>
                         &times;
                     </button>
-                    <h2>{movieDetails.Title}</h2>
                     <img
                         src={movieDetails.Poster !== 'N/A' ? movieDetails.Poster : 'placeholder.jpg'}
                         alt={movieDetails.Title}
                     />
+                    <h2>{movieDetails.Title}</h2>
                     <p><strong>Year:</strong> {movieDetails.Year}</p>
                     <p><strong>Genre:</strong> {movieDetails.Genre}</p>
                     <p><strong>Director:</strong> {movieDetails.Director}</p>
@@ -47,7 +48,7 @@ const MovieDetailsModal: React.FC<MovieDetailsModalProps> = ({
                     <p><strong>Plot:</strong> {movieDetails.Plot}</p>
                 </div>
             ) : (
-                <div className="error">Failed to load movie details.</div>
+                <div className={styles.error}>Failed to load movie details.</div>
             )}
         </Modal>
     );
