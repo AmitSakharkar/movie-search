@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import MovieDetailsModal from '../MovieDetails/MovieDetails';
 import { fetchMovies } from '../../services/api';
-
+import styles from './MovieCard.module.css';
 interface MovieCardProps {
     id: string;
     title: string;
@@ -51,10 +51,10 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, title, year, poster }) => {
     };
 
     return (
-        <div className="movie-card">
-            <div onClick={() => openModal(title)} style={{ cursor: 'pointer' }}>
+        <div className={styles.movieCard}>
+            <div onClick={() => openModal(title)}>
                 <img src={poster !== 'N/A' ? poster : 'placeholder.jpg'} alt={title} />
-                <div className="movie-info">
+                <div className={styles.movieInfo}>
                     <h3>{title}</h3>
                     <p>{year}</p>
                 </div>
