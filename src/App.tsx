@@ -1,8 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { fetchMovies } from './services/api';
 
 function App() {
+  React.useEffect(() => {
+    fetchMovies('mogli')
+      .then((data) => console.log('Movies:', data))
+      .catch((error) => console.error('Error fetching movies:', error));
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
